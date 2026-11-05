@@ -1,5 +1,6 @@
-# Stage 1: Build React frontend (always on amd64 — output is platform-agnostic JS/CSS)
-FROM --platform=linux/amd64 node:20-alpine AS frontend-builder
+# Stage 1: Build React frontend on the builder CPU (JS/CSS is arch-agnostic).
+# Do not force linux/amd64 — esbuild crashes under QEMU (EPIPE).
+FROM --platform=$BUILDPLATFORM node:20-alpine AS frontend-builder
 WORKDIR /app
 COPY frontend/package*.json ./frontend/
 RUN cd frontend && npm ci

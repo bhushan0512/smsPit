@@ -1,0 +1,19 @@
+.git
+.github
+.vscode
+.air.toml
+.env
+.env.*
+*.md
+
+# Host installs must not overwrite Linux node_modules from npm ci
+frontend/node_modules
+frontend/dist
+
+# Go / local build artifacts
+bin
+tmp
+*.db
+*.db-shm
+*.db-wal
+cmd/smspit/web/assets
